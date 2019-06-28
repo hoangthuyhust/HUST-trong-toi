@@ -1,0 +1,83 @@
+#include<stdio.h>
+void nhapMang(int a[], int n)
+{
+	for(int i=0;i<n;i++)
+		{
+
+			scanf("%d", &a[i]);
+		}
+}
+
+
+void gopMang(int a[], int m, int b[], int n, int c[],int &d)
+{
+    d=m+n;
+    for(int i=0; i<d; i++)
+    {
+        if (i<n)
+            c[i]=a[i];
+        else  c[i]=b[i-n];
+    }
+
+}
+void SapXep(int c[], int d)
+{
+	for(int i=0;i<d-1;i++)
+			for(int j=i+1;j<d;j++)
+				{
+					if(c[i]>c[j])
+						{
+							int TrungGian;
+							TrungGian=c[i];
+							c[i]=c[j];
+							c[j]=TrungGian;
+						}
+				}
+
+}
+void xuatmang(int c[],int d)
+{
+    for (int i=0;i<d;++i)
+        printf("%5d",c[i]);
+}
+int main()
+{
+	int n, m, d, a[20], b[20], c[40], chon;
+	d=m+n;
+	do
+    {
+        printf("\n1. Nhap hai day so theo thu tu tang dan\n");
+        printf("2. Ghep hai mang\n");
+        printf("3. Hien thi 3 day so\n");
+        printf("4. Thoat\n");
+        printf("Moi ban chon:");
+        scanf("%d", &chon);
+        switch(chon)
+        {
+        case 1:
+            printf("nhap so phan tu mang A:");
+            scanf("%d",&n);
+            nhapMang(a,n);
+            printf("nhap so phan tu mang B:");
+            scanf("%d",&m);
+            nhapMang(b,m);
+            break;
+        case 2:
+            gopMang(a,m,b,n,c,d);
+            break;
+        case 3:
+            printf("Day so A:\n");
+            xuatmang(a,n);
+            printf("\nDay so B:\n");
+            xuatmang(b,m);
+            SapXep(c,d);
+            printf("\nDay so C la:\n");
+            xuatmang(c,d);
+            break;
+
+
+        }
+    }while(chon!=4);
+
+
+}
