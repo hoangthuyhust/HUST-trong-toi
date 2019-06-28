@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include<math.h>
+
+int main()
+{
+    float GDP2014, rate, GDP;
+    int year=2014, i=0;
+    printf("Nhap GDP 2014:");
+    scanf("%f", &GDP2014);
+    printf("Nhap rate:");
+    scanf("%f", &rate);
+    GDP=GDP2014;
+    printf("Nam\t\t\t\t\t\t\tGDP\n");
+    while(1)
+    {
+        if(GDP>GDP2014*2.0) break;
+        else
+        {
+            GDP=GDP2014+GDP2014*rate;
+            printf("%d\t\t\t\t\t\t\t%.2f", year+1, GDP);
+            i++;
+        }
+
+    }
+
+}
