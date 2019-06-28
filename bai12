@@ -1,0 +1,102 @@
+#include<stdio.h>
+#include<conio.h>
+#include<math.h>
+void taotep();
+void bosung();
+void in();
+typedef struct
+{
+   int stt;
+   char tenhang[100];
+   int dongia;
+   int soluong;
+   int tien;
+}hanghoa;
+long size = sizeof(hanghoa);
+FILE *fp;
+hanghoa hh;
+void taotep()
+{
+    int a;
+    fp=fopen("SO_LIEU.C", "wb");
+    do
+    {
+        printf("STT:");
+        scanf("%d", &hh.stt);
+        printf("\nTen hang:");
+        fflush(stdin);
+        gets(hh.tenhang);
+        printf("\nSo luong:");
+        scanf("%d", &hh.soluong);
+        printf("\nDon gia:");
+        scanf("%d", &hh.dongia);
+        fwrite(&hh,size,1,fp);
+        printf("\nBan co muon nhap nua khong?\n1. Co\n2. Khong\n");
+        scanf("%d", &a);
+    }while(a==1);
+    fclose(fp);
+}
+void bosung()
+{
+    int a;
+    fp=fopen("SO_LIEU.C","ab");
+    fseek(fp,0,SEEK_END);
+    do
+    {
+        printf("\nSTT:");
+        scanf("%d", &hh.stt);
+        printf("\nTen hang:");
+        fflush(stdin);
+        gets(hh.tenhang);
+        printf("\nSo luong:");
+        scanf("%d", &hh.soluong);
+        printf("\nDon gia:");
+        scanf("%d", &hh.dongia);
+        fwrite(&hh,size,1,fp);
+        printf("\nBan co muon bo sung nua khong?\n1. Co\n2. Khong\n");
+        scanf("%d", &a);
+    }while(a==1);
+    fclose(fp);
+}
+void in()
+{
+    fp=fopen("SO_LIEU.C","rb");
+    printf("\t\tSO LIEU BAN HANG\n");
+    printf("_____________________________________________________________\n");
+    printf("|STT  |Ten hang            |So luong  |Don gia   |Thanh tien |\n");
+    printf("|_____|____________________|__________|__________|___________|\n");
+    while(fread(&hh,size,1,fp)>0)
+    {
+        hh.tien=hh.dongia*hh.soluong;
+        printf("|%-5d|%-20s|%-10d|%-10d|%-10d |\n", hh.stt, hh.tenhang, hh.soluong, hh.dongia, hh.tien);
+        printf("|_____|____________________|__________|__________|___________|\n");
+
+    }
+    fclose(fp);
+}
+int main()
+{
+    int chon;
+    do
+    {
+        printf("1. Nhap so lieu ban hang\n");
+        printf("2. Bo sung so lieu ban hang\n");
+        printf("3. Hien thi so lieu ban hang\n");
+        printf("4. Thoat\n");
+        printf("Moi ban chon:");
+        scanf("%d", &chon);
+        switch(chon)
+        {
+        case 1:
+            taotep();
+            break;
+        case 2:
+            bosung();
+            break;
+        case 3:
+            in();
+            break;
+        }
+
+    }while(chon!=4);
+}
