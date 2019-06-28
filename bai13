@@ -1,0 +1,85 @@
+#include<stdio.h>
+#include<conio.h>
+#include<malloc.h>
+#include<math.h>
+typedef struct Node
+{
+    int sodu;
+    struct Node *next;
+}node;
+node *top, *p;
+void push(int n)
+{
+    p=(node*)malloc(sizeof(node));
+    p->sodu=n;
+    p->next=top;
+    top=p;
+}
+void chuyencoso(int so, int coso)
+{
+    top=NULL;
+    while(so!=0)
+    {
+        push(so % coso);
+        so=so/coso;
+    }
+}
+void pop(int &m)
+{
+    p=top;
+    m=p->sodu;
+    top=top->next;
+    free(p);
+}
+void hienthi(int so, int coso)
+{
+    int n;
+    printf("\nSo %d duoc doi sang co so %d la:", so, coso);
+    while(top!=NULL)
+    {
+        pop(n);
+        if(n<10) printf("%d", n);
+        else printf("%c", n+55);
+    }
+    getch();
+}
+int main()
+{
+    int chon;
+
+    do
+    {
+        printf("\n1. Chuyen 1 so nguyen sang he 2\n");
+        printf("2. Chuyen 1 so nguyen sang he 8\n");
+        printf("3. Chuyen 1 so nguyen sang he 16\n");
+        printf("4. Thoat\n");
+        printf("Moi ban chon:");
+        scanf("%d", &chon);
+        switch(chon)
+        {
+        case 1:
+            int n;
+            printf("\nNhap so nguyen n:");
+            scanf("%d", &n);
+            chuyencoso(n,2);
+            hienthi(n,2);
+            break;
+        case 2:
+            int m;
+            printf("\nNhap so nguyen m:");
+            scanf("%d", &m);
+            chuyencoso(m,8);
+            hienthi(m,8);
+            break;
+        case 3:
+            int p;
+            printf("\nNhap so nguyen p:");
+            scanf("%d", &p);
+            chuyencoso(p,16);
+            hienthi(p,16);
+            break;
+        }
+    }while(chon!=4);
+
+}
+
