@@ -202,7 +202,6 @@ void searchbyname(list l)
     Node *p;
     p=(Node*)malloc(sizeof(Node));
     p=l.head;
-    p=p->next;
     while(p!=NULL)
     {
         if(strcmp(p->data.hoten,name)==0)
@@ -230,7 +229,6 @@ void searchbycode(list l)
     Node *p;
     p=(Node*)malloc(sizeof(Node));
     p=l.head;
-    p=p->next;
     while(p!=NULL)
     {
         if(strcmp(p->data.msv,code)==0)
