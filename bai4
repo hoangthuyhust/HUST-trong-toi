@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+int main()
+{
+    float a, b, c, d, e, f, D, dx, dy, x, y;
+    printf("Nhap a, b, c, d, e, f:");
+    scanf("%f %f %f %f %f %f", &a, &b, &c, &d, &e, &f);
+    D=a*e-b*d;
+    if(D==0)
+    {
+        if(c==f)
+        {
+            printf("He phuong trinh co vo so nghiem!!!");
+        }
+        else
+        {
+            printf("He phuong trinh vo nghiem!!!");
+        }
+    }
+    else
+    {
+        dx=b*f-e*c;
+        dy=a*f-d*c;
+        x=dx/D;
+        y=dy/D;
+        printf("He phuong trinh co nghiem duy nhat:\nx=%.2f\ny=%.2f", x, y);
+    }
+}
+
