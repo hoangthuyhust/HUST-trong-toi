@@ -1,0 +1,103 @@
+#include <stdio.h>
+#include <conio.h>
+#include<math.h>
+void nhap(int a[100], int *n)
+{
+  	scanf("%d",&*n);
+  	for(int i=0;i<*n;i++)
+  	{
+  		printf("Nhap a[%d]: ",i);
+    	scanf("%d",&a[i]);
+  	}
+}
+void inheso(int a[100], int *n)
+{
+	for(int i=0;i<*n;i++)
+    {
+    	printf("%d\n",a[i]);
+    }
+}
+void tong(int a[100], int b[100],int c[100], int n, int m,int *o)
+{
+		if(n<m)
+  		{
+ 		 for(int j=0;j<m;j++)
+    		for(int i =0;i<n;i++)
+     			if(i==j)
+     			{
+     				 c[j]=b[j]+a[i];
+     			}
+     			else if(j>i)
+                    c[j]=b[j];
+                    *o=m;
+  		}
+	else if(n>m)
+  		{
+  			for(int i=0;i<n;i++)
+    			for(int j=0;j<m;j++)
+     			if(j==i)
+     				{
+      					c[i]=a[i]+b[j];
+     				}
+     				else if(j<i)
+                    c[i]=a[i];
+                *o=n;
+  		}
+}
+void giatridathuc(int a[100], int *n, int x)
+{
+	int s=0;
+	int i;
+	for(i=0;i<*n;i++)
+	{
+		s=s+a[i]*pow(x,i);
+	}
+	printf("%d\n", s);
+}
+int main()
+{
+	int a[100],b[100], c[100],n,i,j,x,m,o;
+	int chon;
+	do
+    {
+        printf("1. Nhap hai da thuc P, Q\n");
+        printf("2. Tinh he so cua da thuc T\n");
+        printf("3. In he so cua 3 da thuc\n");
+        printf("4. Tinh gia tri cua 3 da thuc\n");
+        printf("5. Thoat\n");
+        printf("Moi ban chon:");
+        scanf("%d", &chon);
+        switch(chon)
+        {
+        case 1:
+            printf("Nhap da thuc P:\n");
+            nhap(a,&n);
+            printf("Nhap da thuc Q:\n");
+            nhap(b,&m);
+            break;
+        case 2:
+            tong(a,b,c,n,m,&o);
+            break;
+        case 3:
+            printf("In he so da thuc P\n");
+            inheso(a,&n);
+            printf("In he so da thuc Q\n");
+            inheso(b,&m);
+            printf("In he so da thuc T\n");
+            inheso(c,&o);
+            break;
+        case 4:
+            printf("Nhap gia tri cua x:");
+            scanf("%d", &x);
+            printf("Gia tri da thuc P:  ");
+            giatridathuc(a,&n,x);
+            printf("\nGia tri da thuc Q:  ");
+            giatridathuc(b,&m,x);
+             printf("\nGia tri da thuc T:  ");
+            giatridathuc(c,&o,x);
+            break;
+
+        }
+    }while(chon!=5);
+}
+
